@@ -1,6 +1,6 @@
 [package]
 name = "rusty_ffmpeg"
-version = "0.16.1+ffmpeg.7.0"
+version = "0.16.1+ffmpeg7.1"
 authors = ["ldm0 <ldm2993593805@163.com>"]
 edition = "2021"
 description = "A library that provides Rust bindings for FFmpeg"
@@ -34,6 +34,7 @@ vcpkg = { version = "0.2", optional = true }
 pkg-config = "0.3"
 
 [features]
+default = ["ffmpeg7"]
 # Probe and link FFmpeg with pkg-config
 link_system_ffmpeg = []
 # Probe and link FFmpeg with vcpkg
@@ -44,3 +45,6 @@ ffmpeg5 = []
 ffmpeg6 = []
 # FFmpeg 7.* support
 ffmpeg7 = []
+
+[workspace.metadata.release]
+tag-name = "v{{version}}+{{metadata}}"
