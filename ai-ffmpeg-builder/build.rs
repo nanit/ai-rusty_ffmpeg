@@ -71,9 +71,9 @@ fn build_ffmpeg(source_dir: &Path, build_dir: &Path, install_dir: &Path) -> Resu
         "PKG_CONFIG_PATH",
         build_dir.join("lib").join("pkgconfig").to_str().unwrap(),
     ).args([
-        format!("--prefix=\"{}\"", install_dir.to_str().unwrap()),
-        format!("--extra-cflags=\"-I{}\"", build_dir.join("include").to_str().unwrap()),
-        format!("--extra-ldflags=\"-L{}\"", build_dir.join("lib").to_str().unwrap())
+        format!("--prefix={}", install_dir.to_str().unwrap()),
+        format!("--extra-cflags=-I{}", build_dir.join("include").to_str().unwrap()),
+        format!("--extra-ldflags=-L{}", build_dir.join("lib").to_str().unwrap())
     ]).args([
         "--disable-shared",
         "--enable-static",
@@ -171,10 +171,7 @@ fn main() -> Result<()> {
 
     if !out_dir.exists() {
         fs::create_dir(&out_dir)?;
-        if let Err(e) = run_build(&out_dir) {
-            // fs::remove_dir_all(&out_dir)?;
-            return Err(e);
-        }
+        run_build(&out_dir)?;
     }
 
     println!(
