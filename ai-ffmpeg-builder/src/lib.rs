@@ -1,0 +1,2 @@
+
+pub static FFMPEG_PKG_CONFIG_PATH: &str = env!("FFMPEG_PKG_CONFIG_PATH");

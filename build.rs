@@ -529,6 +529,7 @@ fn docs_rs_linking(env_vars: &EnvVars) {
 }
 
 fn main() {
+    env::set_var("FFMPEG_PKG_CONFIG_PATH", ai_ffmpeg_builder::FFMPEG_PKG_CONFIG_PATH);
     let env_vars = EnvVars::init();
     if env_vars.docs_rs.is_some() {
         docs_rs_linking(&env_vars);
